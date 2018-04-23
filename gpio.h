@@ -60,7 +60,7 @@ The  following  function is used to initialize an entire port as input or output
 In case of setting the port as output, the initial_state sets the initial state of the port pins to  
 HIGH  or LOW. And in case of setting  the  port as  input, initial state can be used to set pull-up 
 resistors. Examples: 
-- Setting portb as output with initial value of all pins as HIGH:s
+- Setting portb as output with initial value of all pins as HIGH:
       gpio_init_port(PORT_B, OUTPUT, 0xff);
 - Setting portd as input with all pull-up resistors enabled:
       gpio_init_port(PORT_D,  INPUT, 0xff); 
@@ -95,9 +95,11 @@ In case of setting the pin/pins as output, the initial_state sets the initial va
 as HIGH or LOW.  And in  case  of  setting the pin as input, initial value can be used to  enable 
 pull-up resistor. Examples:
 - setting  pin0  of  portb as output with initial value HIGH:
-	gpio_init_port_pin(PORT_B, PIN_0, OUTPUT, HIGH); 
+	gpio_init_port_pin(PORT_B, PIN_0, OUTPUT, 0b00000001); 
 - setting pin0 of portd as input with pull-up resistor enabled:
-	gpio_init_port(PORT_D,  PIN_0, INPUT, HIGH); 
+	gpio_init_port(PORT_D,  PIN_0, INPUT, 0b00000001); 
+- setting  pin0 and pin7  of  portb as output with initial value HIGH:
+	gpio_init_port_pin(PORT_B, (PIN_7|PIN_0), OUTPUT, 0b10000001); 
 **************************************************************************************************/
 void gpio_init_port_pin(port_number_t port_number, uint8_t pin_number, direction_t pin_direction, uint8_t pin_initial_state);
 
@@ -122,7 +124,12 @@ void gpio_write_port_pin(port_number_t port_number, uint8_t pin_number, uint8_t 
 The following function is used to read the value of a single pin or a group of pins of a certain 
 port that are configured as input. Examples:
 	gpio_read_port_pin(PORT_A, PIN_5);
+Note that the returned value in this example is on the form of 0b00x00000, where x is the value of
+the pin.
+
 	gpio_read_port_pin(PORT_A, (PIN_5|PIN_0));
+Note that the returned value in this example is on the form of 0b00x0000y, where x is the value of
+pin5 and y is the value of pin0.
 **************************************************************************************************/
 uint8_t gpio_read_port_pin(port_number_t port_number, uint8_t pin_number);
 
