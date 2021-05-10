@@ -107,25 +107,25 @@ gpio_std_return_error_t gpio_port_config(gpio_port_t gpio_port, gpio_direction_t
 	{
 		case GPIO_PORTA:
 		/* Setting the port direction: */
-	    DDRA_REG = gpio_port_direction;      /* Accessing DDRA. */
-    	/* Setting the initial value: */
-	    PORTA_REG = gpio_port_init_value;    /* Accessing PORTA*/
+	        DDRA_REG = gpio_port_direction;      /* Accessing DDRA. */
+    	        /* Setting the initial value: */
+	        PORTA_REG = gpio_port_init_value;    /* Accessing PORTA*/
 		return_error = GPIO_E_OK;
 		break;
 		
 		case GPIO_PORTB:
 		/* Setting the port direction: */
-	     DDRB_REG = gpio_port_direction;     /* Accessing DDRB. */
-    	/* Setting the initial value: */
-	    PORTB_REG = gpio_port_init_value;    /* Accessing PORTB*/
+	        DDRB_REG = gpio_port_direction;     /* Accessing DDRB. */
+    	        /* Setting the initial value: */
+	        PORTB_REG = gpio_port_init_value;    /* Accessing PORTB*/
 		return_error = GPIO_E_OK;
 		break;
 		
 		case GPIO_PORTC:
 		/* Setting the port direction: */
-	     DDRC_REG = gpio_port_direction;     /* Accessing DDRC. */
-    	/* Setting the initial value: */
-	    PORTC_REG = gpio_port_init_value;    /* Accessing PORTC*/
+	        DDRC_REG = gpio_port_direction;     /* Accessing DDRC. */
+          	/* Setting the initial value: */
+	        PORTC_REG = gpio_port_init_value;    /* Accessing PORTC*/
 		return_error = GPIO_E_OK;
 		break;
 		
@@ -436,26 +436,26 @@ gpio_std_return_error_t gpio_pin_write(gpio_port_t gpio_port, gpio_pin_t gpio_pi
 		  {
 		    case GPIO_PORTA:
 		    PORTA_REG = ((PORTA_REG & ~(1<<gpio_pin)) | (gpio_pin_level << gpio_pin));
-			return_error = GPIO_E_OK;
+		    return_error = GPIO_E_OK;
 		    break;
 		    
 		    case GPIO_PORTB:
 		    PORTB_REG = ((PORTB_REG & ~(1<<gpio_pin)) | (gpio_pin_level << gpio_pin));
-			return_error = GPIO_E_OK;
+		    return_error = GPIO_E_OK;
 		    break;
 		    
 		    case GPIO_PORTC:
 		    PORTC_REG = ((PORTC_REG & ~(1<<gpio_pin)) | (gpio_pin_level << gpio_pin));
-			return_error = GPIO_E_OK;
+		    return_error = GPIO_E_OK;
 		    break;
 		    
 		    case GPIO_PORTD:
 		    PORTD_REG = ((PORTD_REG & ~(1<<gpio_pin)) | (gpio_pin_level << gpio_pin));
-			return_error = GPIO_E_OK;
+		    return_error = GPIO_E_OK;
 		    break;
 		    
 		    default:
-			return_error = GPIO_E_NOT_OK; /* Wrong Port */
+		    return_error = GPIO_E_NOT_OK; /* Wrong Port */
 		    break;
 		  }
 	  }
@@ -546,21 +546,22 @@ gpio_std_return_error_t gpio_pins_read(gpio_port_t gpio_port, uint8_t gpio_pins,
     {
       case GPIO_PORTA:
       *gpio_pins_value = (PINA_REG & gpio_pins) ;
-	  return_error = GPIO_E_OK;
+      return_error = GPIO_E_OK;
       break;
       
       case GPIO_PORTB:
       *gpio_pins_value = (PINB_REG & gpio_pins) ;
-	  return_error = GPIO_E_OK;
+      return_error = GPIO_E_OK;
       break;
       
       case GPIO_PORTC:
       *gpio_pins_value = (PINC_REG & gpio_pins) ;
-	  return_error = GPIO_E_OK;
+      return_error = GPIO_E_OK;
       break;
       
       case GPIO_PORTD:
       *gpio_pins_value = (PIND_REG & gpio_pins) ;
+      return_error = GPIO_E_OK;
       break;
       
       default:
